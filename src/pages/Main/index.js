@@ -9,7 +9,13 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 import styles from './styles';
 
-export default class Main extends Component {
+// Redux
+import { bindActionsCreators } from 'redux';
+import { connect } from 'react-redux';
+import * as action from 'redux/actions/favorites';
+import { bindActionCreators } from 'redux';
+
+class Main extends Component {
   static navigationOptions = {
     header: null,
   };
@@ -18,6 +24,10 @@ export default class Main extends Component {
     navigation: PropTypes.shape({
       navigate: PropTypes.func,
     }).isRequired,
+  };
+
+  addNewFavorite = () => {
+    this.props.searchAndAddRepository('mauriciolucas22/reduxtodo');
   };
 
   render() {
@@ -37,7 +47,7 @@ export default class Main extends Component {
           <Button
             style={styles.button}
             color="success"
-            onPress={() => {}}
+            onPress={this.addNewFavorite}
           >
             Adicionar repositório
           </Button>
@@ -54,3 +64,11 @@ export default class Main extends Component {
     );
   }
 }
+
+
+const mapStateToProps = state => ({});
+
+const mapDispatchtoProps = dispatch =>
+  bindActionCreators(action, dispatch);
+
+export default connect(mapStateToProps, mapDispatchtoProps)(Main);
