@@ -24,10 +24,18 @@ class Main extends Component {
     navigation: PropTypes.shape({
       navigate: PropTypes.func,
     }).isRequired,
+    searchAndAddRepository: PropTypes.func.isRequired,
+    favorites: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number,
+    })).isRequired,
   };
 
+  state = {
+    newRepositoryName: '',
+  }
+
   addNewFavorite = () => {
-    this.props.searchAndAddRepository('mauriciolucas22/reduxtodo');
+    this.props.searchAndAddRepository(this.state.newRepositoryName);
   };
 
   render() {
@@ -43,6 +51,8 @@ class Main extends Component {
             placeholder="Digite o nome do repositório"
             autoCapitalize="none"
             autoCorrect={false}
+            value={this.state.newRepositoryName}
+            onChangeText={text => this.setState({ newRepositoryName: text })}
           />
           <Button
             style={styles.button}
@@ -56,7 +66,7 @@ class Main extends Component {
         <View style={styles.userInformation}>
           <TouchableOpacity activeOpacity={0.6} onPress={() => { navigate('Favorites') }}>
             <Text style={styles.favoritesText}>
-              MEUS FAVORITOS (14)
+              MEUS FAVORITOS ({this.props.favorites.length})
             </Text>
           </TouchableOpacity>
         </View>
@@ -66,7 +76,9 @@ class Main extends Component {
 }
 
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  favorites: state.favorites,
+});
 
 const mapDispatchtoProps = dispatch =>
   bindActionCreators(action, dispatch);
