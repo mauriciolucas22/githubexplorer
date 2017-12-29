@@ -3,7 +3,6 @@ import createSagaMiddleware from 'redux-saga';
 import { persistStore, persistCombineReducers } from 'redux-persist';
 import storage from 'redux-persist/es/storage';
 import sagas from './sagas';
-import { AsyncStorage } from 'react-native';
 
 import reducers from './reducers';
 
