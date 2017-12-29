@@ -16,6 +16,9 @@
 		"react-redux": "^5.0.6",
 		"reactotron-react-native": "^1.13.2",
 		"reactotron-redux": "^1.13.0",
+		"reactotron-redux-saga": "^1.13.0",
+		"redux-persist": "^5.4.0",
+		"redux-saga": "^0.16.0",
 		"redux-thunk": "^2.2.0"
 	},
 	"devDependencies": {

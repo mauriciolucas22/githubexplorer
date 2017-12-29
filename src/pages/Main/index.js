@@ -10,10 +10,9 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import styles from './styles';
 
 // Redux
-import { bindActionsCreators } from 'redux';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as action from 'redux/actions/favorites';
-import { bindActionCreators } from 'redux';
 
 class Main extends Component {
   static navigationOptions = {
@@ -24,7 +23,7 @@ class Main extends Component {
     navigation: PropTypes.shape({
       navigate: PropTypes.func,
     }).isRequired,
-    searchAndAddRepository: PropTypes.func.isRequired,
+    addFavorite: PropTypes.func.isRequired,
     favorites: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.number,
     })).isRequired,
@@ -35,7 +34,8 @@ class Main extends Component {
   }
 
   addNewFavorite = () => {
-    this.props.searchAndAddRepository(this.state.newRepositoryName);
+    this.props.addFavorite(this.state.newRepositoryName);
+    this.setState({ newRepositoryName: '' });
   };
 
   render() {
