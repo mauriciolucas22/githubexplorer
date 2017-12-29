@@ -81,7 +81,7 @@ const mapStateToProps = state => ({
   favorites: state.favorites,
 });
 
-const mapDispatchtoProps = dispatch =>
+const mapDispatchToProps = dispatch =>
   bindActionCreators({ addFavorite }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchtoProps)(Main);
+export default connect(mapStateToProps, mapDispatchToProps)(Main);

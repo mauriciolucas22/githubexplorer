@@ -7,9 +7,15 @@ import { View, Text, Image, Linking, TouchableOpacity } from 'react-native';
 import Button from 'components/Button';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+// Redux
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { removeFavorite } from '../../redux/ducks/favorites';
+
 import styles from './styles';
 
-export default class Repository extends Component {
+export class Repository extends Component {
   static propTypes = {
     repository: PropTypes.shape({
       id: PropTypes.number,
@@ -89,7 +95,7 @@ export default class Repository extends Component {
           <Button
             color="danger"
             style={styles.rightButton}
-            onPress={() => {}}
+            onPress={() => this.props.removeFavorite(repository.id)}
           >
             Hoje não
           </Button>
@@ -98,3 +104,9 @@ export default class Repository extends Component {
     );
   }
 }
+
+
+const mapDispathToProps = dispatch =>
+  bindActionCreators({ removeFavorite }, dispatch );
+
+export default connect(null, mapDispathToProps)(Repository);

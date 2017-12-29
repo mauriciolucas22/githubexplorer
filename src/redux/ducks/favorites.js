@@ -3,6 +3,7 @@
 export const Types = {
   ADD: 'favorites/ADD',
   SEARCH: 'favorites/SEARCH',
+  REMOVE: 'favorites/REMOVE',
 }
 
 // Reducer
@@ -13,6 +14,8 @@ export default function favorites(state = initialState, action) {
   switch (action.type) {
     case Types.ADD:
       return [ ...state, action.playload.repository ];
+    case Types.REMOVE:
+      return state.filter(repository => repository.id !== action.playload.id)
     default:
       return state;
   }
@@ -25,6 +28,15 @@ export function addFavorite(repositoryName) {
     type: Types.SEARCH,
     playload: {
       repositoryName,
+    },
+  };
+}
+
+export function removeFavorite(id) {
+  return {
+    type: Types.REMOVE,
+    playload: {
+      id,
     },
   };
 }
