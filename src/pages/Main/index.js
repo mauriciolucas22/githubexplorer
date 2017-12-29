@@ -12,7 +12,8 @@ import styles from './styles';
 // Redux
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as action from 'redux/actions/favorites';
+
+import { addFavorite } from 'redux/ducks/favorites';
 
 class Main extends Component {
   static navigationOptions = {
@@ -81,6 +82,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchtoProps = dispatch =>
-  bindActionCreators(action, dispatch);
+  bindActionCreators({ addFavorite }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchtoProps)(Main);
